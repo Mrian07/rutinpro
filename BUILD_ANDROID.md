@@ -243,11 +243,34 @@ Edit `android/app/src/main/res/values/strings.xml` untuk:
 
 ## Icon & Splash Screen
 
-1. Siapkan icon (1024x1024 px)
-2. Siapkan splash screen (2732x2732 px)
-3. Gunakan tool generator atau manual replace di:
-   - `android/app/src/main/res/mipmap-*/ic_launcher.png`
+### Icon
+
+Icon aplikasi sudah di-setup menggunakan `icon.png` di root project.
+
+Untuk mengganti icon:
+
+1. Replace file `icon.png` dengan icon baru (minimal 512x512 px)
+2. Generate icon untuk Android:
+   ```bash
+   npm run generate-icons
+   ```
+3. Sync dengan Capacitor:
+   ```bash
+   npx cap sync android
+   ```
+
+Script akan otomatis generate icon dalam berbagai ukuran untuk semua density Android.
+
+Lihat `ICON_GUIDE.md` untuk panduan lengkap.
+
+### Splash Screen
+
+Untuk customize splash screen:
+
+1. Siapkan splash screen image (2732x2732 px)
+2. Replace di:
    - `android/app/src/main/res/drawable*/splash.png`
+3. Edit `android/app/src/main/res/values/styles.xml` untuk customize warna background
 
 ## Permissions
 
