@@ -147,7 +147,7 @@ export default function PrivacyPolicyPage({ onBack }: PrivacyPolicyPageProps) {
               silakan hubungi kami di:
             </p>
             <p className="text-[#30e86e] font-medium mt-2">
-              support@rutinpro.app
+              stackmasters07@gmail.com
             </p>
           </div>
         </div>
