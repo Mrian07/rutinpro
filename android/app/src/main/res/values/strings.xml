@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">RutinPro</string>
+    <string name="title_activity_main">RutinPro</string>
+    <string name="package_name">com.rutinpro.app</string>
+    <string name="custom_url_scheme">com.rutinpro.app</string>
+</resources>

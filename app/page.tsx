@@ -10,6 +10,8 @@ import BottomNav from "./components/BottomNav";
 import StatsPage from "./components/StatsPage";
 import AddHabitPage from "./components/AddHabitPage";
 import SettingsPage from "./components/SettingsPage";
+import PrivacyPolicyPage from "./components/PrivacyPolicyPage";
+import TermsOfServicePage from "./components/TermsOfServicePage";
 
 export default function Home() {
   const { habits, addHabit, toggleHabit, getProgress, isLoaded } = useHabit();
@@ -17,7 +19,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [currentPage, setCurrentPage] = useState<
-    "home" | "stats" | "add" | "settings"
+    "home" | "stats" | "add" | "settings" | "privacy" | "terms"
   >("home");
   const [userName, setUserName] = useState<string>("");
   const [showNameModal, setShowNameModal] = useState(false);
@@ -44,6 +46,21 @@ export default function Home() {
     } else {
       setShowNameModal(true);
     }
+
+    // Listen for navigation events from SettingsPage
+    const handleNavigateToPrivacy = () => setCurrentPage("privacy");
+    const handleNavigateToTerms = () => setCurrentPage("terms");
+
+    window.addEventListener("navigate-to-privacy", handleNavigateToPrivacy);
+    window.addEventListener("navigate-to-terms", handleNavigateToTerms);
+
+    return () => {
+      window.removeEventListener(
+        "navigate-to-privacy",
+        handleNavigateToPrivacy
+      );
+      window.removeEventListener("navigate-to-terms", handleNavigateToTerms);
+    };
   }, []);
 
   // Toggle dark mode
@@ -177,6 +194,16 @@ export default function Home() {
         onNameChange={setUserName}
       />
     );
+  }
+
+  // Render Privacy Policy Page
+  if (currentPage === "privacy") {
+    return <PrivacyPolicyPage onBack={() => setCurrentPage("settings")} />;
+  }
+
+  // Render Terms of Service Page
+  if (currentPage === "terms") {
+    return <TermsOfServicePage onBack={() => setCurrentPage("settings")} />;
   }
 
   // Render Home Page
