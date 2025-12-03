@@ -1,23 +1,42 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 interface AddHabitPageProps {
   onBack: () => void;
   onAdd: (name: string, color: string, icon: string) => void;
 }
 
-const COLORS = ['#82D9A1', '#7EC9E6', '#E6A87E', '#E67E7E', '#A87EE6', '#E67EC9'];
+const COLORS = [
+  "#82D9A1",
+  "#7EC9E6",
+  "#E6A87E",
+  "#E67E7E",
+  "#A87EE6",
+  "#E67EC9",
+];
 const ICONS = [
-  'book', 'fitness_center', 'water_drop', 'wb_sunny', 'bedtime',
-  'restaurant', 'work', 'school', 'local_mall', 'savings',
-  'favorite', 'home', 'directions_run', 'spa', 'self_improvement'
+  "book",
+  "fitness_center",
+  "water_drop",
+  "wb_sunny",
+  "bedtime",
+  "restaurant",
+  "work",
+  "school",
+  "local_mall",
+  "savings",
+  "favorite",
+  "home",
+  "directions_run",
+  "spa",
+  "self_improvement",
 ];
 
 export default function AddHabitPage({ onBack, onAdd }: AddHabitPageProps) {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [selectedColor, setSelectedColor] = useState(COLORS[0]);
-  const [selectedIcon, setSelectedIcon] = useState('book');
+  const [selectedIcon, setSelectedIcon] = useState("book");
   const [isIconPickerOpen, setIsIconPickerOpen] = useState(false);
 
   const handleSave = () => {
@@ -38,7 +57,7 @@ export default function AddHabitPage({ onBack, onAdd }: AddHabitPageProps) {
           <span className="material-symbols-outlined text-3xl">close</span>
         </button>
         <h1 className="flex-1 text-center text-lg font-bold leading-tight tracking-[-0.015em]">
-          New Habit
+          Rutinitas Baru
         </h1>
         <div className="flex size-12 shrink-0 items-center"></div>
       </div>
@@ -47,7 +66,7 @@ export default function AddHabitPage({ onBack, onAdd }: AddHabitPageProps) {
         {/* Name Section */}
         <section className="mb-6">
           <h2 className="px-0 pb-3 pt-4 text-lg font-bold leading-tight tracking-[-0.015em]">
-            Name
+            Nama Rutinitas
           </h2>
           <div className="flex max-w-full flex-wrap items-end gap-4 rounded-xl bg-white dark:bg-gray-800 p-4 shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
             <label className="flex flex-col min-w-40 flex-1">
@@ -55,7 +74,7 @@ export default function AddHabitPage({ onBack, onAdd }: AddHabitPageProps) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="flex h-14 w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl border-none bg-gray-100 dark:bg-gray-700 p-4 text-base font-normal leading-normal placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#30e86e]/50 text-[#111813] dark:text-white"
-                placeholder="e.g., Read for 15 minutes"
+                placeholder="Masukan Rutinitas Anda"
                 autoFocus
               />
             </label>
@@ -76,31 +95,54 @@ export default function AddHabitPage({ onBack, onAdd }: AddHabitPageProps) {
               <div className="flex items-center gap-4">
                 <div
                   className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#30e86e]/20 text-[#30e86e]"
-                  style={{ backgroundColor: `${selectedColor}33`, color: selectedColor }}
+                  style={{
+                    backgroundColor: `${selectedColor}33`,
+                    color: selectedColor,
+                  }}
                 >
-                  <span className="material-symbols-outlined text-3xl">{selectedIcon}</span>
+                  <span className="material-symbols-outlined text-3xl">
+                    {selectedIcon}
+                  </span>
                 </div>
-                <p className="flex-1 truncate text-base font-medium leading-normal">Icon</p>
+                <p className="flex-1 truncate text-base font-medium leading-normal">
+                  Icon
+                </p>
               </div>
               <div className="shrink-0">
-                <span className={`material-symbols-outlined text-2xl text-gray-400 dark:text-gray-500 transition-transform duration-300 ${isIconPickerOpen ? 'rotate-90' : ''}`}>
+                <span
+                  className={`material-symbols-outlined text-2xl text-gray-400 dark:text-gray-500 transition-transform duration-300 ${
+                    isIconPickerOpen ? "rotate-90" : ""
+                  }`}
+                >
                   arrow_forward_ios
                 </span>
               </div>
             </div>
 
             {/* Icon Grid (Collapsible) */}
-            <div className={`grid grid-cols-5 gap-4 overflow-hidden transition-all duration-300 ${isIconPickerOpen ? 'max-h-64 mt-4 opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div
+              className={`grid grid-cols-5 gap-4 overflow-hidden transition-all duration-300 ${
+                isIconPickerOpen
+                  ? "max-h-64 mt-4 opacity-100"
+                  : "max-h-0 opacity-0"
+              }`}
+            >
               {ICONS.map((icon) => (
                 <button
                   key={icon}
                   onClick={() => setSelectedIcon(icon)}
-                  className={`flex aspect-square items-center justify-center rounded-xl transition-all ${selectedIcon === icon
-                      ? 'bg-gray-100 dark:bg-gray-700 ring-2 ring-[#30e86e]'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-700/50'
-                    }`}
+                  className={`flex aspect-square items-center justify-center rounded-xl transition-all ${
+                    selectedIcon === icon
+                      ? "bg-gray-100 dark:bg-gray-700 ring-2 ring-[#30e86e]"
+                      : "hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                  }`}
                 >
-                  <span className="material-symbols-outlined text-2xl" style={{ color: selectedIcon === icon ? selectedColor : undefined }}>
+                  <span
+                    className="material-symbols-outlined text-2xl"
+                    style={{
+                      color: selectedIcon === icon ? selectedColor : undefined,
+                    }}
+                  >
                     {icon}
                   </span>
                 </button>
@@ -117,10 +159,11 @@ export default function AddHabitPage({ onBack, onAdd }: AddHabitPageProps) {
                   <button
                     key={color}
                     onClick={() => setSelectedColor(color)}
-                    className={`size-9 rounded-full transition-transform hover:scale-110 ${selectedColor === color
-                        ? 'ring-2 ring-offset-2 ring-[#30e86e] ring-offset-[#f6f8f6] dark:ring-offset-[#112116]'
-                        : ''
-                      }`}
+                    className={`size-9 rounded-full transition-transform hover:scale-110 ${
+                      selectedColor === color
+                        ? "ring-2 ring-offset-2 ring-[#30e86e] ring-offset-[#f6f8f6] dark:ring-offset-[#112116]"
+                        : ""
+                    }`}
                     style={{ backgroundColor: color }}
                   />
                 ))}
@@ -137,7 +180,7 @@ export default function AddHabitPage({ onBack, onAdd }: AddHabitPageProps) {
           disabled={!name.trim()}
           className="w-full rounded-xl bg-[#30e86e] py-4 text-center text-base font-bold text-[#111813] shadow-lg shadow-[#30e86e]/20 hover:shadow-[#30e86e]/40 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Save Habit
+          Simpan Rutinitas
         </button>
       </footer>
     </div>
